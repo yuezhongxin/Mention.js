@@ -1,0 +1,75 @@
+﻿<!-- from : https://github.com/jakiestfu/Mention.js -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>mention.js demo</title>
+
+	<link rel="stylesheet" type="text/css" href="../css/mention-simple.css">
+
+	<style type='text/css'>
+		body {
+			padding:20px;
+			background: #EEE;
+			color: #252525;
+			text-shadow: 0 1px 0 white;
+			}
+		textarea {
+            font-size: 15px;
+            width:100%;
+			height:100px;
+			}
+	</style>
+</head>
+<body>
+	<textarea id="full"></textarea>
+
+    <script src="../scripts/jquery-1.10.2.js"></script>
+    <script type='text/javascript' src="../scripts/mention-typeahead.js"></script>
+    <script type='text/javascript' src="../scripts/mention.js"></script>
+	<script type='text/javascript' src="../scripts/textarea-caret-position.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $("#full").mention({
+                typeaheadOpts: { 
+                    search: search,
+                    under: true
+                }
+            });
+        });
+
+        function search(key) {
+            var data = [{
+                name: 'Rob Dyrdek',
+                image: 'http://placekitten.com/25/24'
+            }, {
+                name: 'Rick Bahner',
+                image: 'http://placekitten.com/25/23'
+            }, {
+                name: 'Jacob Kelley',
+                image: 'http://placekitten.com/25/22'
+            }, {
+                name: 'John Doe',
+                image: 'http://placekitten.com/25/21'
+            }, {
+                name: 'Charlie Edmiston',
+                image: 'http://placekitten.com/25/20'
+            }, {
+                name: 'Andrea Montoya',
+                image: 'http://placekitten.com/24/20'
+            }, {
+                name: 'Jenna Talbert',
+                image: 'http://placekitten.com/23/20'
+            }, {
+                name: 'Street League',
+                image: 'http://placekitten.com/22/20'
+            }, {
+                name: 'Loud Mouth Burrito',
+                image: 'http://placekitten.com/21/20'
+            }];
+            console.log("key:" + key);
+            return data;
+        }
+	</script>
+</body>
+</html>

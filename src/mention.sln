@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE42FDE1-C8D3-42B4-9465-6739E70B42C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{CEE2E97C-E915-4F19-AB11-7E5C4E695E66}"
+	ProjectSection(SolutionItems) = preProject
+		css\mention-simple.css = css\mention-simple.css
+		css\mention.css = css\mention.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{76D6F673-45B6-48C7-9FF7-1E261315DF48}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\jquery-1.10.2.js = scripts\jquery-1.10.2.js
+		scripts\mention-typeahead.js = scripts\mention-typeahead.js
+		scripts\mention.js = scripts\mention.js
+		scripts\textarea-caret-position.js = scripts\textarea-caret-position.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{1B106AC0-D659-4F9A-B760-B0F085B51FFD}"
+	ProjectSection(SolutionItems) = preProject
+		demo\default.html = demo\default.html
+		demo\fixed.html = demo\fixed.html
+		demo\simple.html = demo\simple.html
+		demo\under_font.html = demo\under_font.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEE2E97C-E915-4F19-AB11-7E5C4E695E66} = {EE42FDE1-C8D3-42B4-9465-6739E70B42C5}
+		{76D6F673-45B6-48C7-9FF7-1E261315DF48} = {EE42FDE1-C8D3-42B4-9465-6739E70B42C5}
+		{1B106AC0-D659-4F9A-B760-B0F085B51FFD} = {EE42FDE1-C8D3-42B4-9465-6739E70B42C5}
+	EndGlobalSection
+EndGlobal
