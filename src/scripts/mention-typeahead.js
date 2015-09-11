@@ -37,6 +37,7 @@
     this.search = this.options.search;
     this.under = this.options.under || false;
     this.fixed = this.options.fixed || false;
+    this.sort = this.options.sort || false;
     this.$menu = $(this.options.menu)
     this.shown = false
     this.listen()
@@ -121,7 +122,9 @@
   , process: function (items) {
       var that = this
 
-      items = this.sorter(items)
+      if (this.sort) {
+          items = this.sorter(items)
+      }
 
       if (!items.length) {
         return this.shown ? this.hide() : this
