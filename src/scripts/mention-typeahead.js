@@ -38,6 +38,7 @@
     this.under = this.options.under || false;
     this.fixed = this.options.fixed || false;
     this.sort = this.options.sort || false;
+    this.textValue;
     this.$menu = $(this.options.menu)
     this.shown = false
     this.listen()
@@ -153,7 +154,7 @@
     }
 
   , highlighter: function (item) {
-      var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
+      var query = this.textValue.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
       return item.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
         return '<strong>' + match + '</strong>'
       })
