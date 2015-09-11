@@ -43,7 +43,7 @@
                     return false;
                 },
                 _updater = function(item) {
-                    var data = this.query,
+                    var data = this.textValue,
                         caratPos = this.$element[0].selectionStart,
                         i;
                     
