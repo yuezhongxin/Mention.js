@@ -36,6 +36,7 @@
                     if (this.query.toLowerCase().indexOf(settings.delimiter) > -1) {
                         var lastQuery = this.query.toLowerCase().substring(this.query.toLowerCase().lastIndexOf(settings.delimiter) + 1);
                         if (lastQuery.indexOf(' ') == -1 && lastQuery.length > 0) {
+                            this.query = lastQuery;
                             return true;
                         }
                     }
