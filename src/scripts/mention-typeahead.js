@@ -39,6 +39,8 @@
     this.fixed = this.options.fixed || false;
     this.sort = this.options.sort || false;
     this.textValue;
+    this.at_top;
+    this.at_left;
     this.$menu = $(this.options.menu)
     this.shown = false
     this.listen()
@@ -71,11 +73,8 @@
       else {
           var top, left;
           if (this.under) {
-              var element = document.querySelector('#' + this.$element[0].id);
-              var coordinates = getCaretCoordinates(element, element.selectionEnd);
-              var fontSize = getComputedStyle(element).getPropertyValue('font-size').replace('px', '');
-              top = pos.top + coordinates.top + parseInt(fontSize)
-              left = pos.left + coordinates.left - fontSize/3
+              top = pos.top + this.at_top
+              left = pos.left + this.at_left
           }
           else {
               top = pos.top + pos.height
@@ -105,6 +104,7 @@
       var items
 
       this.query = this.$element.val()
+      this.textValue = this.query
 
       if (!this.query || this.query.length < this.options.minLength) {
           return this.shown ? this.hide() : this
@@ -273,9 +273,6 @@
 
           case 27: // escape
               if (!this.shown) return
-              this.hide()
-              break
-          case 32: // blank space
               this.hide()
               break
 
