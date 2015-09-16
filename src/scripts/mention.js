@@ -111,7 +111,7 @@
                     var that = this;
                     items = $(items).map(function(i, item) {
 
-                        i = $(that.options.item).attr('data-value', item.name);
+                        i = $(that.options.item);
 
                         var _linkHtml = $('<div />');
 
