@@ -37,6 +37,11 @@
     this.search = this.options.search;
     this.under = this.options.under || false;
     this.fixed = this.options.fixed || false;
+    this.sort = this.options.sort || false;
+    this.input_text = this.options.input_text || false;
+    this.textValue;
+    this.at_top;
+    this.at_left;
     this.$menu = $(this.options.menu)
     this.shown = false
     this.listen()
@@ -47,7 +52,7 @@
     constructor: Typeahead
 
   , select: function () {
-      var val = this.$menu.find('.active').attr('data-value')
+      var val = this.$menu.find('.active').text()
       this.$element
         .val(this.updater(val + " "))
         .change()
@@ -60,7 +65,7 @@
 
   , show: function () {
       var pos = $.extend({}, this.$element.position(), {
-        height: this.$element[0].offsetHeight
+          height: this.$element[0].offsetHeight
       })
 
       if (this.shown && this.fixed) {
@@ -69,11 +74,12 @@
       else {
           var top, left;
           if (this.under) {
-              var element = document.querySelector('#' + this.$element[0].id);
-              var coordinates = getCaretCoordinates(element, element.selectionEnd);
-              var fontSize = getComputedStyle(element).getPropertyValue('font-size').replace('px', '');
-              top = pos.top + coordinates.top + parseInt(fontSize)
-              left = pos.left + coordinates.left - fontSize/3
+              top = pos.top + this.at_top
+              left = pos.left + this.at_left
+          }
+          else if (this.input_text) {
+              top = pos.top + pos.height
+              left = pos.left + this.at_left
           }
           else {
               top = pos.top + pos.height
@@ -103,6 +109,7 @@
       var items
 
       this.query = this.$element.val()
+      this.textValue = this.query
 
       if (!this.query || this.query.length < this.options.minLength) {
           return this.shown ? this.hide() : this
@@ -121,7 +128,9 @@
   , process: function (items) {
       var that = this
 
-      items = this.sorter(items)
+      if (this.sort) {
+          items = this.sorter(items)
+      }
 
       if (!items.length) {
         return this.shown ? this.hide() : this
@@ -150,7 +159,7 @@
     }
 
   , highlighter: function (item) {
-      var query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
+      var query = this.textValue.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
       return item.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
         return '<strong>' + match + '</strong>'
       })
@@ -160,7 +169,7 @@
       var that = this
 
       items = $(items).map(function (i, item) {
-        i = $(that.options.item).attr('data-value', item)
+        i = $(that.options.item).text(item)
         i.find('a').html(that.highlighter(item))
         return i[0]
       })
@@ -269,9 +278,6 @@
 
           case 27: // escape
               if (!this.shown) return
-              this.hide()
-              break
-          case 32: // blank space
               this.hide()
               break
 

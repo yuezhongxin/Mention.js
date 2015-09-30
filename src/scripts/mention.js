@@ -33,16 +33,26 @@
                     return query.substring(i, caratPos);
                 },
                 _matcher = function () {
-                    if (this.query.toLowerCase().indexOf(settings.delimiter) > -1) {
-                        var lastQuery = this.query.toLowerCase().substring(this.query.toLowerCase().lastIndexOf(settings.delimiter) + 1);
+                    this.query = this.query.toLowerCase();
+                    if (this.query.indexOf(settings.delimiter) > -1) {
+                        var delimiter_index = this.query.lastIndexOf(settings.delimiter);
+                        if (delimiter_index == this.query.length - 1) {
+                            var element = document.querySelector('#' + this.$element[0].id);
+                            var coordinates = getCaretCoordinates(element, element.selectionEnd);
+                            var fontSize = getComputedStyle(element).getPropertyValue('font-size').replace('px', '');
+                            this.at_top = coordinates.top + parseInt(fontSize);
+                            this.at_left = coordinates.left;
+                        }
+                        var lastQuery = this.query.substring(delimiter_index + 1);
                         if (lastQuery.indexOf(' ') == -1 && lastQuery.length > 0) {
+                            this.query = lastQuery;
                             return true;
                         }
                     }
                     return false;
                 },
                 _updater = function(item) {
-                    var data = this.query,
+                    var data = this.textValue,
                         caratPos = this.$element[0].selectionStart,
                         i;
                     
@@ -101,7 +111,7 @@
                     var that = this;
                     items = $(items).map(function(i, item) {
 
-                        i = $(that.options.item).attr('data-value', item.name);
+                        i = $(that.options.item);
 
                         var _linkHtml = $('<div />');
 
